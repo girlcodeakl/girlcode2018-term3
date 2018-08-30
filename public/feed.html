@@ -15,7 +15,7 @@
 
 function displayMessage(post) {
 
-  let postHTML = 
+  let postHTML =
   '<div class="post">'
   + '<div class="message">' + post + '</div>'
   + '</div>';
@@ -27,6 +27,8 @@ function displayMessage(post) {
 function createFeed(posts) {
   posts.forEach(displayMessage);
 }
+
+//this is a comment
 
 fetch("/posts")
   .then(response => response.json())
