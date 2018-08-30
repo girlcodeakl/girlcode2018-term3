@@ -28,6 +28,8 @@ function createFeed(posts) {
   posts.forEach(displayMessage);
 }
 
+//this is a comment
+
 fetch("/posts")
   .then(response => response.json())
   .then(createFeed);
