@@ -10,7 +10,6 @@ body {
 h1 {
   color: #FFB03B;
 }
-
 .post {
   margin: 10px;
   padding: 10px;
@@ -18,36 +17,44 @@ h1 {
   border-radius: 5px;
   color: #468966;
 }
-  .topnav {
-    background-color: white;
-    overflow: hidden;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    top: 0;
-    width: 40%;
-   }.topnav a {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-size: 20px;
-   }.topnav a:hover {
-    background-color: black;
-    color: white;
-    }.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    }.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+.topnav {
+  background-color: white;
+  overflow: hidden;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  top: 0;
+  width: 40%;
 }
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.topnav a:hover {
+  background-color: black;
+  color: white;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+img {
+  width: 80%;
+  padding-bottom: 5%;
+  padding-top: 5%;
 
 }
