@@ -3,11 +3,19 @@
   <head>
     <meta charset='utf-8'>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+<main>
+    <h2>Write your post</h2>
       <form method="post" action="/posts">
-          <input type="text" name="message" value="message goes here">
-          <button>Post it!</button>
+        <label>Please leave your message below:
+          <input type="text" name="message">
+        </label>
+        <label>Post it here!
+            <button>Submit</button>
+          </label>
       </form>
+    </main>
   </body>
 </html>
