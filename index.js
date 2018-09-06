@@ -1,4 +1,5 @@
 //set up
+let databasePosts = null;
 let express = require('express')
 let app = express();
 let bodyParser = require('body-parser')
@@ -22,10 +23,12 @@ app.get('/posts', sendPostsList);
 
 //let a client POST something new
 function saveNewPost(request, response) {
+
   console.log(request.body.message); //write it on the command prompt so we can see
   let post= {};
   post.message = request.body.message;
   post.image = request.body.image;
+  databasePosts.insert(post);
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
 }
@@ -34,3 +37,17 @@ app.post('/posts', saveNewPost);
 //listen for connections on port 3000
 app.listen(3000);
 console.log("Hi! I am listening at http://localhost:3000");
+let MongoClient = require('mongodb').MongoClient;
+let databaseUrl = 'mongodb://mjakowetz:girlcode123@ds147592.mlab.com:47592/keep-posts-when-server-restarts-jb-mj';
+let databaseName = 'keep-posts-when-server-restarts-jb-mj';
+
+MongoClient.connect(databaseUrl, {useNewUrlParser: true}, function(err, client) {
+  if (err) throw err;
+  console.log("yay we connected to the database");
+  let database = client.db(databaseName);
+  databasePosts = database.collection('posts');
+  databasePosts.find({}).toArray(function(err, results) {
+    console.log("Found " + results.length + " results")
+    posts = results
+  });
+});
