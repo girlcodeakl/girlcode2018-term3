@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <nav style="font-family:arial black;" class="topnav">
+          <a class="active" href="http://localhost:3000/">HOME</a>
+          <a href="http://localhost:3000/post.html">POST</a>
+          <a href="http://localhost:3000/feed.html">FEED</a>
+      </nav>
     <meta charset='utf-8'>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +14,15 @@
 <main>
     <h2>Write your post</h2>
       <form method="post" action="/posts">
+
         <label>Please leave your message below:
           <input type="text" name="message">
         </label>
+        <input type="text" name="image" value="image link">
         <label>Post it here!
             <button>Submit</button>
           </label>
+
       </form>
     </main>
   </body>
