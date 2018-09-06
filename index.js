@@ -1,8 +1,8 @@
 //set up
 let databasePosts = null;
 let express = require('express')
-let app = express();
 let bodyParser = require('body-parser')
+let app = express();
 
 //If a client asks for a file,
 //look in the public folder. If it's there, give it to them.
@@ -26,8 +26,12 @@ function saveNewPost(request, response) {
 
   console.log(request.body.message); //write it on the command prompt so we can see
   let post= {};
-  post.message = request.body.message;
   post.image = request.body.image;
+  if (post.image === "") {
+   post.image = "https://i.ytimg.com/vi/PezifzPrIvc/maxresdefault.jpg"
+ }
+  post.message = request.body.message;
+  console.log (post);
   databasePosts.insert(post);
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
@@ -35,7 +39,7 @@ function saveNewPost(request, response) {
 app.post('/posts', saveNewPost);
 
 //listen for connections on port 3000
-app.listen(3000);
+app.listen((process.env.PORT || 3000));
 console.log("Hi! I am listening at http://localhost:3000");
 let MongoClient = require('mongodb').MongoClient;
 let databaseUrl = 'mongodb://mjakowetz:girlcode123@ds147592.mlab.com:47592/keep-posts-when-server-restarts-jb-mj';
