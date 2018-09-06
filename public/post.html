@@ -1,29 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <nav style="font-family:arial black;" class="topnav">
-          <a class="active" href="http://localhost:3000/">HOME</a>
-          <a href="http://localhost:3000/post.html">POST</a>
-          <a href="http://localhost:3000/feed.html">FEED</a>
-      </nav>
-    <meta charset='utf-8'>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-<main>
+<head>
+  <nav style="font-family:arial black;" class="topnav">
+    <a class="active" href="http://localhost:3000/">HOME</a>
+    <a href="http://localhost:3000/post.html">POST</a>
+    <a href="http://localhost:3000/feed.html">FEED</a>
+  </nav>
+  <meta charset='utf-8'>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <main>
     <h2>Write your post</h2>
-      <form method="post" action="/posts">
-
-        <label>Please leave your message below:
-          <input type="text" name="message">
-        </label>
-        <input type="text" name="image" value="image link">
-        <label>Post it here!
-            <button>Submit</button>
-          </label>
-
-      </form>
-    </main>
+    <div class="note"></div>
+    <form method="post" action="/posts">
+      <label>Please leave your message below:
+        <input class="messageInput" type="text" name="message" value="message goes here">
+      </label>
+      <input class="imageInput"  type="text" name="image" value="">
+      <label>Post it here!
+        <button class="postButton">Submit</button>
+      </label>
+    </form>
+  </main>
+  <script>
+  function sendMessageToServer(e) {
+    e.preventDefault();
+    
+    let data = {};
+    data.message = document.querySelector(".messageInput").value;
+    data.image = document.querySelector(".imageInput").value;
+    fetch("/posts", {
+      method:"POST",
+      body: JSON.stringify(data),
+      headers: {'Content-Type': 'application/json'}});
+      
+      document.querySelector(".note").innerHTML = "Thanks! Your message was saved!";
+      
+    }
+    
+    
+    document.querySelector(".postButton").addEventListener("click", sendMessageToServer);
+    
+    </script>
   </body>
-</html>
+  
+  </html>
