@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class="note"></div>
       <form method="post" action="/posts">
           <input class="messageInput" type="text" name="message" value="message goes here">
           <button class="postButton">Post it!</button>
@@ -15,7 +16,12 @@
 
         let data = {};
         data.message = document.querySelector(".messageInput").value;
-        fetch("/posts", {method:"POST", body: JSON.stringify(data)});
+        fetch("/posts", {
+          method:"POST",
+          body: JSON.stringify(data),
+          headers: {'Content-Type': 'application/json'}});
+
+        document.querySelector(".note").innerHTML = "Thanks! Your message was saved!";
 
         }
 
