@@ -34,7 +34,7 @@ function saveNewPost(request, response) {
   response.send("thanks for your message. Press back to add another");
 }
 app.post('/posts', saveNewPost);
-
+post.id = Math.round(Math.random() * 10000);
 //listen for connections on port 3000
 app.listen((process.env.PORT || 3000));
 console.log("Hi! I am listening at http://localhost:3000");
