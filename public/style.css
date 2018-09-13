@@ -42,6 +42,7 @@ main {
 
  }
 
+
 .message-list {
   background-color: #FFF0A5;
   padding: 20px;
@@ -112,4 +113,8 @@ img {
   padding-bottom: 5%;
   padding-top: 5%;
 
+}
+
+.hidden {
+  display: none;
 }
