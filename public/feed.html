@@ -33,6 +33,7 @@ function displayMessage(post) {
 }
 
 function createFeed(posts) {
+  posts.reverse();
   posts.forEach(displayMessage);
 }
 
