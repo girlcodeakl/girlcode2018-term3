@@ -17,6 +17,7 @@
     <form method="post" action="/posts">
       <label>Please leave your message below:
         <input class="messageInput" type="text" name="message" placeholder="message goes here">
+        <input class="nameInput" type="text" name="author" placeholder="Author">
       </label>
       <input class="imageInput"  type="text" name="image" value="">
       <label>Post it here!
@@ -31,6 +32,7 @@
     let data = {};
     data.message = document.querySelector(".messageInput").value;
     data.image = document.querySelector(".imageInput").value;
+    data.author = document.querySelector(".nameInput").value;
     fetch("/posts", {
       method:"POST",
       body: JSON.stringify(data),
