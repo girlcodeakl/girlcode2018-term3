@@ -33,11 +33,14 @@ function saveNewPost(request, response) {
    post.image = "https://i.ytimg.com/vi/PezifzPrIvc/maxresdefault.jpg"
  }
   post.message = request.body.message;
+  post.time = new Date ();
   console.log (post);
   databasePosts.insert(post);
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
+
 }
+
 app.post('/posts', saveNewPost);
 
 
