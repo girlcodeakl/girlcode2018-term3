@@ -46,6 +46,7 @@ main {
 
  }
 
+
 .message-list {
   background-color: #2693A1;
   padding: 20px;
@@ -53,6 +54,11 @@ main {
   font-size: 20px;
   max-width: 80%;
   margin: auto; }
+
+.time {
+  color: gray;
+  font-size: 16px;
+  }
 
 h1 {
   text-align: center;
@@ -130,4 +136,7 @@ img {
   width: 50%;
   display: inline-block;
   float:right;
+}
+.hidden {
+  display: none;
 }

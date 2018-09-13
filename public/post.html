@@ -6,6 +6,7 @@
     <a class="active" href="/">HOME</a>
     <a href="post.html">POST</a>
     <a href="feed.html">FEED</a>
+    <a href="login.html">Log in</a>
   </nav>
   <meta charset='utf-8'>
   <link rel="stylesheet" href="style.css">
@@ -18,6 +19,7 @@
     <form method="post" action="/posts">
       <label>Please leave your message below:
         <input class="messageInput" type="text" name="message" placeholder="message goes here">
+        <input class="nameInput" type="text" name="author" placeholder="Author">
       </label>
       <input class="imageInput"  type="text" name="image" value="">
       <label>Post it here!
@@ -32,6 +34,7 @@
     let data = {};
     data.message = document.querySelector(".messageInput").value;
     data.image = document.querySelector(".imageInput").value;
+    data.author = document.querySelector(".nameInput").value;
     fetch("/posts", {
       method:"POST",
       body: JSON.stringify(data),

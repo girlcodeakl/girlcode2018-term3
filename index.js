@@ -25,18 +25,25 @@ app.get('/posts', sendPostsList);
 function saveNewPost(request, response) {
 
   console.log(request.body.message); //write it on the command prompt so we can see
+  console.log(request.body.author);
   let post= {};
   post.image = request.body.image;
+  post.author = request.body.author;
   if (post.image === "") {
    post.image = "https://i.ytimg.com/vi/PezifzPrIvc/maxresdefault.jpg"
  }
   post.message = request.body.message;
+  post.time = new Date ();
   console.log (post);
   databasePosts.insert(post);
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
+
 }
+
 app.post('/posts', saveNewPost);
+
+
 
 //listen for connections on port 3000
 app.listen((process.env.PORT || 3000));
