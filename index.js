@@ -20,6 +20,13 @@ function sendPostsList(request, response) {
   response.send(posts);
 }
 app.get('/posts', sendPostsList);
+app.get('/post', function (request, response) {
+   let searchId = request.query.id;
+   console.log("Searching for post " + searchId);
+   response.send("post");
+   let post = posts.find(x => x.id == searchId);
+   response.send("post");
+});
 
 //let a client POST something new
 function saveNewPost(request, response) {
@@ -28,10 +35,11 @@ function saveNewPost(request, response) {
   let post= {};
   post.image = request.body.image;
   if (post.image === "") {
-   post.image = "https://i.ytimg.com/vi/PezifzPrIvc/maxresdefault.jpg"
+   post.image = "https://png.icons8.com/ios/1600/no-camera.png"
  }
   post.message = request.body.message;
   console.log (post);
+  post.id = Math.round(Math.random() * 10000);
   databasePosts.insert(post);
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
