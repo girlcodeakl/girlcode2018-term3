@@ -49,6 +49,11 @@ main {
   font-size: 20px;
 }
 
+.time {
+  color: gray;
+  font-size: 16px;
+  }
+
 h1 {
   color: #FFB03B;
   display: block;
@@ -66,7 +71,6 @@ label{
   border: 2px solid #FFB03B;
   border-radius: 5px;
   color: #468966;
-
   display: block;
   }
 

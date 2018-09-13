@@ -8,14 +8,18 @@
         </nav>
     <meta charset='utf-8'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/timeago.min.js"></script>
     <title>Message Feed</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/timeago.min.js"></script>
+
   </head>
   <body>
     <h1 class="title">Message Feed</h1>
     <div class="message-list">
-    </div>
+
+      </div>
     <script>
 
 //Hello! This is the start of the JavaScript.
@@ -26,10 +30,15 @@ function displayMessage(post) {
   '<div class="post">'
   + '  <img src=' + post.image + '>'
   + '<div class="message">' + post.message + '</div>'
-  + '</div>';
+  + '<div class="time">' + new timeago().format(post.time) + '</div>';
+    + '</div>';
+
 
   let messageList = document.querySelector(".message-list");
   messageList.innerHTML += postHTML;
+
+  let time = now
+
 }
 
 function createFeed(posts) {
