@@ -12,8 +12,8 @@
     <title>Message Feed</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <input class="filter"  type="text" name="filter" value="">
     <script src="/timeago.min.js"></script>
-
   </head>
   <body>
     <h1 class="title">Message Feed</h1>
@@ -23,7 +23,6 @@
     <script>
 
 //Hello! This is the start of the JavaScript.
-
 function displayMessage(post) {
 
   let postHTML =
@@ -50,6 +49,23 @@ function createFeed(posts) {
 fetch("/posts")
   .then(response => response.json())
   .then(createFeed);
+
+function filterFeed(){
+  let searchText = document.querySelector(".filter").value;
+  document.querySelectorAll(".post").forEach(function(element) {
+    if (element.innerHTML.toLowerCase().includes(searchText.toLowerCase())) {
+    console.log("yes");
+    element.classList.remove("hidden");
+  } else {
+    console.log("no");
+    element.classList.add("hidden");
+  }
+  });
+
+}
+
+document.querySelector(".filter").addEventListener("keyup", filterFeed);
+
 
 //This is the end of the JavaScript.
     </script>
