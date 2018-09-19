@@ -28,12 +28,12 @@ app.get("/posts", sendPostsList);
 //let a client POST something new
 function saveNewPost(request, response) {
   let post = {};
-  post.image = request.body.image;
-  post.author = request.body.author;
+  post.message = filter.clean(request.body.message);
+  post.image = filter.clean(request.body.image);
+  post.author = filter.clean(request.body.author);
   if (post.image === "") {
     post.image = "https://i.ytimg.com/vi/PezifzPrIvc/maxresdefault.jpg";
   }
-  post.message = filter.clean(request.body.message);
   console.log(post);
   databasePosts.insert(post);
   posts.push(post); //save it in our list
