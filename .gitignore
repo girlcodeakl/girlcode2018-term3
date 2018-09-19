@@ -38,3 +38,4 @@ jspm_packages
 
 # hack for Girl Code
 package-lock.json
+.DS_Store
