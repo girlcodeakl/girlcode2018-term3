@@ -34,6 +34,7 @@ function saveNewPost(request, response) {
   if (post.image === "") {
     post.image = "https://i.ytimg.com/vi/PezifzPrIvc/maxresdefault.jpg";
   }
+  post.time = new Date();
   console.log(post);
   databasePosts.insert(post);
   posts.push(post); //save it in our list
