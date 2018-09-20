@@ -31,19 +31,26 @@ app.get('/post', function (request, response) {
 function saveNewPost(request, response) {
 
   console.log(request.body.message); //write it on the command prompt so we can see
+  console.log(request.body.author);
   let post= {};
   post.image = request.body.image;
+  post.author = request.body.author;
   if (post.image === "") {
    post.image = "https://png.icons8.com/ios/1600/no-camera.png"
  }
   post.message = request.body.message;
+  post.time = new Date ();
   console.log (post);
   post.id = Math.round(Math.random() * 10000);
   databasePosts.insert(post);
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
+
 }
+
 app.post('/posts', saveNewPost);
+
+
 
 //listen for connections on port 3000
 app.listen((process.env.PORT || 3000));

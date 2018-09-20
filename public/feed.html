@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <nav style="font-family:arial black;" class="topnav">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+      <nav style="font-family: 'Ubuntu', sans-serif;" class="topnav">
             <a class="active" href="/">HOME</a>
             <a href="post.html">POST</a>
             <a href="feed.html">FEED</a>
+            <a href="login.html">Log in</a>
         </nav>
     <meta charset='utf-8'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/timeago.min.js"></script>
     <title>Message Feed</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <input class="filter"  type="text" name="filter" value="">
+    <script src="/timeago.min.js"></script>
   </head>
   <body>
     <h1 class="title">Message Feed</h1>
     <div class="message-list">
-    </div>
+
+      </div>
     <script>
 
 //Hello! This is the start of the JavaScript.
-
 function displayMessage(post) {
 
   let postHTML =
   '<div class="post">'
-  + '  <img src=' + post.image + '>'
+  + '<div  class="image"> <img src=' + post.image + '></div>'
+  + '<div class="author">' + post.author + '</div>'
   + '<div class="message">' + post.message + '</div>'
   + '<div class="postId">' + post.id + '</div>'
-  + '</div>';
+  + '<div class="time">' + new timeago().format(post.time) + '</div>'
+    + '</div>';
 
   let messageList = document.querySelector(".message-list");
   messageList.innerHTML += postHTML;
+
 }
 
 function createFeed(posts) {
+  posts.reverse();
   posts.forEach(displayMessage);
 }
 
 fetch("/posts")
   .then(response => response.json())
   .then(createFeed);
+
+function filterFeed(){
+  let searchText = document.querySelector(".filter").value;
+  document.querySelectorAll(".post").forEach(function(element) {
+    if (element.innerHTML.toLowerCase().includes(searchText.toLowerCase())) {
+    console.log("yes");
+    element.classList.remove("hidden");
+  } else {
+    console.log("no");
+    element.classList.add("hidden");
+  }
+  });
+
+}
+
+document.querySelector(".filter").addEventListener("keyup", filterFeed);
+
 
 //This is the end of the JavaScript.
     </script>
