@@ -35,10 +35,12 @@ function saveNewPost(request, response) {
   response.send("thanks for your message. Press back to add another");
 
 }
-function deleteHandler(req, res) {
+function deleteHandler(request, response) {
    console.log("client wants to delete this post: " + request.body.postId );
     //code goes here
    response.send("ok");
+   let postIdNumber = parseInt(request.body.postId);
+   posts = posts.filter(post => post.id != postIdNumber);
 }
 app.post("/delete", deleteHandler);
 app.post('/posts', saveNewPost);

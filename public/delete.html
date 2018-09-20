@@ -19,7 +19,7 @@
         <input class="idInput" type="text" name="message" value="">
       </label>
       <label>Password (only people with the password can delete posts)
-      <input class=".passwordInput"  type="text" name="image" value="">
+      <input class="passwordInput"  type="text" name="image" value="">
       <button class="postButton">Delete!</button>
       </label>
     </form>
@@ -29,8 +29,6 @@
     e.preventDefault();
 
     let data = {};
-    data.message = document.querySelector(".messageInput").value;
-    data.image = document.querySelector(".imageInput").value;
     data.postId = document.querySelector(".idInput").value;
     data.password = document.querySelector(".passwordInput").value;
     fetch("/posts", {
