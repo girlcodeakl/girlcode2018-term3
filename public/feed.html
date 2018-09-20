@@ -34,6 +34,8 @@ function displayMessage(post) {
   + '<div class="message">' + post.message + '</div>'
   + '<div class="postId">' + post.id + '</div>'
   + '<div class="time">' + new timeago().format(post.time) + '</div>'
+  + '<input class="commentInput" type="text" name="message" placeholder="Comment goes here">'
+  + '<button class="commentButton">Submit</button>'
     + '</div>';
 
   let messageList = document.querySelector(".message-list");
@@ -66,7 +68,28 @@ function filterFeed(){
 
 document.querySelector(".filter").addEventListener("keyup", filterFeed);
 
-
+function messageListClick(e) {
+  if (e.target.classList.contains("commentButton")) {
+    console.log("button clicked!")
+    let commentElement = e.target.parentNode.querySelector(".commentInput");
+    let comment = commentElement.value;
+    let commentId = e.target.parentNode.querySelector(".postId");
+    console.log(commentId.innerHTML);
+    console.log("You wrote: " + comment);
+    let data = {};
+    data.postId = commentId.innerHTML
+    data.comment = comment
+    fetch("/comments", {
+    method:"POST",
+    body: JSON.stringify(data),
+    headers: {'Content-Type': 'application/json'}
+    });
+  } else {
+    console.log("something else was clicked")
+  }
+}
+let messageList = document.querySelector(".message-list");
+messageList.addEventListener("click", messageListClick);
 //This is the end of the JavaScript.
     </script>
   </body>
