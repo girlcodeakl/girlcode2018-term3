@@ -23,9 +23,8 @@ app.get('/posts', sendPostsList);
 app.get('/post', function (request, response) {
    let searchId = request.query.id;
    console.log("Searching for post " + searchId);
-   response.send("post");
    let post = posts.find(x => x.id == searchId);
-   response.send("post");
+   response.send(post);
 });
 
 //let a client POST something new
