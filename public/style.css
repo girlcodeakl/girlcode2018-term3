@@ -1,6 +1,8 @@
 
 body {
   font-family: 'Ubuntu', sans-serif;
+  text-align:center;
+  font-size: 20px
 }
 
 input {
@@ -64,9 +66,12 @@ h1 {
   text-align: center;
   color: #324472;
   display: block;
+  font-size: 50px
+  padding: 10px
 }
 h2 {
-  text-align: left;
+  text-align: center;
+  font-size: 18px
 }
 
 label{
@@ -88,7 +93,7 @@ label{
   display: none;
 }
 
-.topnav {
+.topnav b {
   font-weight: 700;
   margin: auto;
   background-color: white;
@@ -131,7 +136,12 @@ img {
   padding-top: 5%;
 
 }
-
+.image a{
+  width: 50%;
+  height: 50%;
+  padding: 3%;
+  position: center;
+}
 .image {
   width: 50%;
   display: inline-block;
