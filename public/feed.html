@@ -32,9 +32,9 @@ function displayMessage(post) {
   + '<div  class="image"> <img src=' + post.image + '></div>'
   + '<div class="author">' + post.author + '</div>'
   + '<div class="message">' + post.message + '</div>'
-  + '<div class="time">' + new timeago().format(post.time) + '</div>';
+  + '<div class="postId">' + post.id + '</div>'
+  + '<div class="time">' + new timeago().format(post.time) + '</div>'
     + '</div>';
-
 
   let messageList = document.querySelector(".message-list");
   messageList.innerHTML += postHTML;
