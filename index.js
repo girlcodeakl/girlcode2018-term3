@@ -3,6 +3,7 @@ let databasePosts = null;
 let express = require("express");
 let bodyParser = require("body-parser");
 let Filter = require("bad-words");
+let sanitizer = require('sanitizer');
 
 let app = express();
 filter = new Filter();
@@ -34,9 +35,12 @@ app.get('/post', function (request, response) {
 //let a client POST something new
 function saveNewPost(request, response) {
   let post = {};
-  post.message = filter.clean(request.body.message);
-  post.image = filter.clean(request.body.image);
-  post.author = filter.clean(request.body.author);
+  let cleanMessage = filter.clean(request.body.message);
+  post.message = sanitizer.sanitize(cleanMessage);
+  let cleanImage = filter.clean(request.body.image);
+  post.image = sanitizer.sanitize(cleanImage);
+  let cleanAuthor = filter.clean(request.body.author);
+  post.author = sanitizer.sanitize(cleanAuthor);
   if (post.image === "") {
     post.image = "https://png.icons8.com/ios/1600/no-camera.png"
   }
