@@ -47,12 +47,18 @@ function saveNewPost(request, response) {
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
 }
+
 function deleteHandler(request, response) {
    console.log("client wants to delete this post: " + request.body.postId );
     //code goes here
    response.send("ok");
-   let postIdNumber = parseInt(request.body.postId);
-   posts = posts.filter(post => post.id != postIdNumber);
+if (request.body.password === "1234") {
+  let postIdNumber = parseInt(request.body.postId);
+  posts = posts.filter(post => post.id != postIdNumber);
+  databasePosts.deleteOne({ id : postIdNumber })
+} else {
+  console.log("Wrong password");
+}
 }
 app.post("/delete", deleteHandler);
 app.post('/posts', saveNewPost);
