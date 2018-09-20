@@ -48,6 +48,7 @@ function saveNewPost(request, response) {
   post.id = Math.round(Math.random() * 10000);
   console.log (post);
   databasePosts.insert(post);
+  post.comments = [];
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
 }

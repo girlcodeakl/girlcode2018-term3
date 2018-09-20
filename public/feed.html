@@ -26,6 +26,9 @@
 
 //Hello! This is the start of the JavaScript.
 function displayMessage(post) {
+  if (post.comments === undefined) post.comments = [];
+  let comments = post.comments.map(comment => '<div class="comment">' + comment + ' </div>').join("\n");
+  console.log(comments);
 
   let postHTML =
   '<div class="post">'
@@ -33,6 +36,7 @@ function displayMessage(post) {
   + '<div class="author">' + post.author + '</div>'
   + '<div class="message">' + post.message + '</div>'
   + '<div class="postId">' + post.id + '</div>'
+  + '<div class="comments">' + comments + '</div>'
   + '<div class="time">' + new timeago().format(post.time) + '</div>'
     + '</div>';
 
