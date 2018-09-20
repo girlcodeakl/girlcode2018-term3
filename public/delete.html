@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <nav style="font-family:arial black;" class="topnav">
+    <a class="active" href="http://localhost:3000/">HOME</a>
+    <a href="http://localhost:3000/post.html">POST</a>
+    <a href="http://localhost:3000/feed.html">FEED</a>
+  </nav>
+  <meta charset='utf-8'>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <main>
+    <h2>Delete your posts!</h2>
+    <div class="note"></div>
+    <form method="post" action="/posts">
+      <label>Id number (of the post you want to delete)
+        <input class="idInput" type="text" name="message" value="">
+      </label>
+      <label>Password (only people with the password can delete posts)
+      <input class="passwordInput"  type="text" name="image" value="">
+      <button class="postButton">Delete!</button>
+      </label>
+    </form>
+  </main>
+  <script>
+  function sendMessageToServer(e) {
+    e.preventDefault();
+
+    let data = {};
+    data.postId = document.querySelector(".idInput").value;
+    data.password = document.querySelector(".passwordInput").value;
+    fetch("/delete", {
+      method:"POST",
+      body: JSON.stringify(data),
+      headers: {'Content-Type': 'application/json'}
+    }
+    );
+    document.querySelector(".note").innerHTML = "Deleting a message...";
+
+    }
+
+
+    document.querySelector(".postButton").addEventListener("click", sendMessageToServer);
+
+    </script>
+  </body>
+
+  </html>
