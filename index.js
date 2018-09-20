@@ -35,7 +35,12 @@ function saveNewPost(request, response) {
   response.send("thanks for your message. Press back to add another");
 
 }
-
+function deleteHandler(req, res) {
+   console.log("client wants to delete this post: " + request.body.postId );
+    //code goes here
+   response.send("ok");
+}
+app.post("/delete", deleteHandler);
 app.post('/posts', saveNewPost);
 
 //listen for connections on port 3000
