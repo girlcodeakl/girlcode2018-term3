@@ -84,7 +84,8 @@ label{
   margin: 10px;
   border: 6px solid #EFA517;
   border-radius: 0;
-  color: #324472;
+  color: black;
+  text-align: left;
   background-color: #fff;
   display: block;
   }
@@ -135,21 +136,34 @@ img {
   padding-bottom: 5%;
   padding-top: 5%;
 
+
 }
 .image a{
   width: 50%;
   height: 50%;
   padding: 3%;
-  position: center;
+
 }
 .image {
   width: 50%;
   display: inline-block;
+  padding-left: 30%
+}
+.author {
+  font-style: italic;
+  color: #d6287c;
+}
+.comment {
+  width: 50%;
+  padding-left: 5%;
+  display: inline-block;
+  float: right;
 }
 .message {
   width: 50%;
   display: inline-block;
-  float:right;
+  float:left;
+
 }
 .hidden {
   display: none;
