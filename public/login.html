@@ -1,77 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <nav style="font-family:'Ubuntu', sans-serif;" class="topnav">
-    <a class="active" href="/">HOME</a>
-    <a href="post.html">SHARE</a>
-    <a href="feed.html">DISCOVER</a>
-    <a href="login.html">SIGN UP</a>
-  </nav>
-  <meta charset='utf-8'>
-  <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <main>
-    <h2>Hey you!</h2>
-    <div class="note"></div>
-    <form method="post" action="/posts">
-      <label>login:
-        <input class="emailInput" type="text" name="email" placeholder="email">
-      </label>
-      <input class="passwordInput"  type="text" name="password" placeholder="password">
+      <a class="active" href="/">HOME</a>
+      <a href="post.html">SHARE</a>
+      <a href="feed.html">DISCOVER</a>
+      <a href="login.html">SIGN UP</a>
+    </nav>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <main>
+      <h2>Hey you!</h2>
+      <div class="note"></div>
+      <form method="post" action="/posts">
+        <label>login:
+          <input class="emailInput" type="text" name="email" placeholder="email">
+        </label>
+        <input class="passwordInput"  type="text" name="password" placeholder="password">
         <button class="loginButton">login</button>
-      </label>
-    </form>
-    <form method="post" action="/posts">
-      <label>signup:
-        <input class="nameInput" type="text" name="fullname" placeholder="fullname">
-      </label>
-      <input class="emailInput2"  type="text" name="email" placeholder="email">
-    </label>
+        </label>
+      </form>
+      <form method="post" action="/posts">
+        <label>signup:
+          <input class="nameInput" type="text" name="fullname" placeholder="fullname">
+        </label>
+        <input class="emailInput2"  type="text" name="email" placeholder="email">
+        </label>
           <input class="passwordInput2" type="text" name="password" placeholder="password">
         </label>
         <button class="signupButton">sign up</button>
-    </form>
-  </main>
-  <script>
-  function signup(e) {
-    e.preventDefault();
-
-    let data = {};
-    data.name = document.querySelector(".nameInput").value;
-    data.email = document.querySelector(".emailInput2").value;
-    data.password = document.querySelector(".passwordInput2").value;
-    fetch("/signup", {
-      method:"POST",
-      body: JSON.stringify(data),
-      headers: {'Content-Type': 'application/json'}});
-
-      document.querySelector(".note").innerHTML = "Thanks for signing up!";
-
-    }
-
-    document.querySelector(".signupButton").addEventListener("click", signup);
-
-    function login(e) {
-      e.preventDefault();
-
-      let data = {};
-      data.email = document.querySelector(".emailInput").value;
-      data.password = document.querySelector(".passwordInput").value;
-      fetch("/login", {
-        method:"POST",
-        body: JSON.stringify(data),
-        headers: {'Content-Type': 'application/json'}});
-
-        document.querySelector(".note").innerHTML = "Thanks for logging in!";
-
+      </form>
+    </main>
+    <script>
+      function signup(e) {
+        e.preventDefault();
+        let data = {};
+        data.name = document.querySelector(".nameInput").value;
+        data.email = document.querySelector(".emailInput2").value;
+        data.password = document.querySelector(".passwordInput2").value;
+        fetch("/signup", {
+          method:"POST",
+          body: JSON.stringify(data),
+          headers: {'Content-Type': 'application/json'}
+        }).then(function(response) {
+          return response.text();
+        }).then(function(text) {
+          document.querySelector(".note").innerHTML = text;
+        });
       }
+      document.querySelector(".signupButton").addEventListener("click", signup);
 
-
+      function login(e) {
+        e.preventDefault();
+        let data = {};
+        data.email = document.querySelector(".emailInput").value;
+        data.password = document.querySelector(".passwordInput").value;
+        fetch("/login", {
+          method:"POST",
+          body: JSON.stringify(data),
+          headers: {'Content-Type': 'application/json'}
+        }).then(function(response) {
+          return response.text();
+        }).then(function(text) {
+          document.querySelector(".note").innerHTML = text;
+        });
+      }
       document.querySelector(".loginButton").addEventListener("click", login);
-
     </script>
   </body>
-
-  </html>
+</html>
