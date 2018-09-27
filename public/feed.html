@@ -79,7 +79,9 @@ function messageListClick(e) {
   if (e.target.classList.contains("commentButton")) {
     console.log("button clicked!")
     let commentElement = e.target.parentNode.querySelector(".commentInput");
+    let commentlist = e.target.parentNode.querySelector("comments");
     let comment = commentElement.value;
+    //commentlist.innerHTML += comment;
     let commentId = e.target.parentNode.querySelector(".postId");
     console.log(commentId.innerHTML);
     console.log("You wrote: " + comment);

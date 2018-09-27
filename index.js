@@ -4,7 +4,6 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let Filter = require("bad-words");
 let sanitizer = require('sanitizer');
-
 let app = express();
 filter = new Filter();
 
@@ -20,6 +19,18 @@ app.use(bodyParser.json());
 let posts = [];
 
 //let a client GET the list
+function login(request, response) {
+  console.log("someone tried to log in");
+  response.send("OK");
+}
+app.post("/login", login);
+
+function signup(request, response) {
+  console.log("someone tried to signup");
+  response.send("OK");
+}
+app.post("/signup", signup);
+
 function sendPostsList(request, response) {
   response.send(posts);
 }
@@ -47,15 +58,26 @@ function saveNewPost(request, response) {
   post.time = new Date();
   post.id = Math.round(Math.random() * 10000);
   console.log (post);
-  databasePosts.insert(post);
   post.comments = [];
+  databasePosts.insert(post);
   posts.push(post); //save it in our list
   response.send("thanks for your message. Press back to add another");
 }
 
+function commentHandler(request,response) {
+   let post = posts.find(x => x.id == request.body.postId);
+   if (post.comments===undefined) post.comments = [];
+    console.log(post);
+    post.comments.push(request.body.comment)
+    console.log(request.body.postId);
+    console.log(request.body.comment);
+   response.send("ok");
+   databasePosts.update({id: postId}, post);
+}
+app.post("/comments", commentHandler);
+
 function deleteHandler(request, response) {
    console.log("client wants to delete this post: " + request.body.postId );
-    //code goes here
    response.send("ok");
 if (request.body.password === "1234") {
   let postIdNumber = parseInt(request.body.postId);

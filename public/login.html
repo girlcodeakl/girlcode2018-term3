@@ -24,57 +24,54 @@
       </label>
       <input class="passwordInput"  type="text" name="password" placeholder="password">
         <button class="loginButton">login</button>
-      </label>
-    </form>
-    <form method="post" action="/posts">
-      <label>signup:
-        <input class="nameInput" type="text" name="fullname" placeholder="fullname">
-      </label>
-      <input class="emailInput2"  type="text" name="email" placeholder="email">
-    </label>
+        </label>
+      </form>
+      <form method="post" action="/posts">
+        <label>signup:
+          <input class="nameInput" type="text" name="fullname" placeholder="fullname">
+        </label>
+        <input class="emailInput2"  type="text" name="email" placeholder="email">
+        </label>
           <input class="passwordInput2" type="text" name="password" placeholder="password">
         </label>
         <button class="signupButton">sign up</button>
-    </form>
-  </main>
-  <script>
-  function signup(e) {
-    e.preventDefault();
-
-    let data = {};
-    data.name = document.querySelector(".nameInput").value;
-    data.email = document.querySelector(".emailInput2").value;
-    data.password = document.querySelector(".passwordInput2").value;
-    fetch("/signup", {
-      method:"POST",
-      body: JSON.stringify(data),
-      headers: {'Content-Type': 'application/json'}});
-
-      document.querySelector(".note").innerHTML = "Thanks for signing up!";
-
-    }
-
-    document.querySelector(".signupButton").addEventListener("click", signup);
-
-    function login(e) {
-      e.preventDefault();
-
-      let data = {};
-      data.email = document.querySelector(".emailInput").value;
-      data.password = document.querySelector(".passwordInput").value;
-      fetch("/login", {
-        method:"POST",
-        body: JSON.stringify(data),
-        headers: {'Content-Type': 'application/json'}});
-
-        document.querySelector(".note").innerHTML = "Thanks for logging in!";
-
+      </form>
+    </main>
+    <script>
+      function signup(e) {
+        e.preventDefault();
+        let data = {};
+        data.name = document.querySelector(".nameInput").value;
+        data.email = document.querySelector(".emailInput2").value;
+        data.password = document.querySelector(".passwordInput2").value;
+        fetch("/signup", {
+          method:"POST",
+          body: JSON.stringify(data),
+          headers: {'Content-Type': 'application/json'}
+        }).then(function(response) {
+          return response.text();
+        }).then(function(text) {
+          document.querySelector(".note").innerHTML = text;
+        });
       }
+      document.querySelector(".signupButton").addEventListener("click", signup);
 
-
+      function login(e) {
+        e.preventDefault();
+        let data = {};
+        data.email = document.querySelector(".emailInput").value;
+        data.password = document.querySelector(".passwordInput").value;
+        fetch("/login", {
+          method:"POST",
+          body: JSON.stringify(data),
+          headers: {'Content-Type': 'application/json'}
+        }).then(function(response) {
+          return response.text();
+        }).then(function(text) {
+          document.querySelector(".note").innerHTML = text;
+        });
+      }
       document.querySelector(".loginButton").addEventListener("click", login);
-
     </script>
   </body>
-
-  </html>
+</html>
